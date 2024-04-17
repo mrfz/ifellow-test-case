@@ -9,14 +9,22 @@
 
 Описание решения задачи:
 Для решения создадим 2 функции: 
-random_array для создания массива случайных элементов от 0 до 1, 
+random_array для создания массива случайных элементов от 0 до 1.  
 max_min_mean - для нахождения максимального, минимального и среднего значения.
 """
 
+from random import random
 
-def random_array() -> list[int]:
-    """Создание массива случайных элементов от 0 до 1"""
-    output: list[int] = list()
+
+def random_array() -> list[float]:
+    """
+    Создание массива случайных элементов от 0 до 1
+
+    Количество элементов в массиве зададим случайным образом по функции random
+    """
+    number_of_elements: int = int(random() * 100) + 1
+    output: list[float] = list(random() for _ in range(number_of_elements))
+
     return output
 
 
