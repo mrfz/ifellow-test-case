@@ -2,6 +2,7 @@ import typer
 from rich.console import Console
 
 from ifellow_test_case import version
+from ifellow_test_case.task1_random_array import max_min_mean, random_array
 
 app = typer.Typer(
     name="ifellow-test-case",
@@ -30,6 +31,27 @@ def main(
     ),
 ) -> None:
     """Тестовое задание для поступления на курс  iFellow QA Automation"""
+
+
+@app.command()
+def random_array_stats(
+    verbose: bool = typer.Option(
+        False, "--verbose", "-v", help="Выводит детальную информацию о массиве"
+    )
+) -> None:
+    """
+    Вывод  максимального, минимального и среднего значения массива сгенерированного случайным образом
+    """
+    array = random_array()
+    array_stats = max_min_mean(array)
+    if verbose:
+        console.print(
+            f"Сгенерированный массив: {array}"
+            + "\n"
+            + f"содержит {len(array)} значений."
+        )
+
+    console.print(f"Статистические данные массива: {array_stats}")
 
 
 if __name__ == "__main__":
