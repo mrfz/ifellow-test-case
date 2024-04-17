@@ -28,7 +28,16 @@ def random_array() -> list[float]:
     return output
 
 
-def max_min_mean() -> dict[str, float]:
-    """Нахождение максимального, минимального и среднего значения"""
-    output: dict[str, float] = dict()
+def max_min_mean(array: list[float]) -> dict[str, float]:
+    """Нахождение максимального, минимального и среднего значения
+
+    :param array: массив случайных элементов от 0 до 1
+    :return: словарь с максимальным, минимальным и средним значениями
+    """
+    output: dict[str, float] = {
+        "max": max(array),
+        "min": min(array),
+        "mean": sum(array) / len(array),
+    }
+
     return output
