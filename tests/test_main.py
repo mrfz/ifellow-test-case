@@ -10,10 +10,17 @@ runner = CliRunner()
 def test_app():
     """Test typer application"""
     result = runner.invoke(app)
-    assert result.exit_code == 2
+    assert result.exit_code == 0
 
 
 def test_app_task1():
     """Test typer application with task 1"""
     result = runner.invoke(app, ["random-array-stats"])
     assert result.exit_code == 0
+
+
+def test_app_task2():
+    """Test typer application with task 2"""
+    result = runner.invoke(app, ["hello"])
+    assert result.exit_code == 0
+    assert result.output == 'Повтороющийся символ в слове "Hello": l\n'
