@@ -18,11 +18,15 @@
 def hands_angle(hours: int, minutes: int) -> float:
     """Возвращает угол между часовой и минутной стрелками часов.
 
-    :param hours: часы
-    :param minutes: минуты
+    Args:
+        hours (int): часы
+        minutes (int): минуты
 
-    :return: угол
+    Raises:
+        ValueError: ошибка ввода времени
 
+    Returns:
+        float: угол между часовой и минутной стрелками по ходу движения часовой стрелки
     """
 
     if hours < 0 or minutes < 0 or hours > 23 or minutes > 59:
