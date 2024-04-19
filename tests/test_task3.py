@@ -14,7 +14,6 @@ from ifellow_test_case.task3_temp_converter import BaseConverter
         (273.15, "k", "c", 0),
         (32, "f", "k", 273.15),
         (273.15, "k", "f", 32),
-        (0, "a", "f", 0),
     ),
 )
 def test_task3(temperature, from_unit, to_unit, expected_result):
@@ -30,3 +29,20 @@ def test_task3(temperature, from_unit, to_unit, expected_result):
         )
         == expected_result
     )
+
+
+@pytest.mark.parametrize(
+    ("temperature", "from_unit", "to_unit", "expected_result"),
+    (
+        (-283.15, "c", "k", 0),
+        (-200, "f", "k", 0),
+        (-2, "k", "c", 0),
+        (100, "k", "a", 0),
+        (100, "a", "k", 0),
+    ),
+)
+def test_task3_error(temperature, from_unit, to_unit, expected_result):
+    """Тестируем ошибки"""
+    test_class: BaseConverter = BaseConverter()
+    with pytest.raises(ValueError):
+        test_class.convert(temperature=-273.15, from_unit="k", to_unit="f")

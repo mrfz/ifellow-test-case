@@ -30,13 +30,30 @@ class BaseConverter:
     def convert(self, temperature: float, from_unit: str, to_unit: str) -> float:
         """Конвертация температуры
 
-        :param temperature: температура
-        :param from_unit: из какой единицы
-        :param to_unit: в какую единицу
 
-        :return: конвертированная температура
+        Args:
+            temperature (float): температура
+            from_unit (str): из какой единицы, можно выбрать: f, c, k
+            to_unit (str): в какую единицу, можно выбрать: f, c, k
 
+        Raises:
+            ValueError: неверное значение единицы измерения
+            ValueError: Температура не может быть меньше абсолютного нуля 0 k
+
+        Returns:
+            float: конвертированная температура
         """
+
+        if from_unit not in ["f", "c", "k"] or to_unit not in ["f", "c", "k"]:
+            raise ValueError("Неверное значение единицы измерения")
+
+        if (
+            (temperature < -273.15 and from_unit == "c")
+            or (temperature < -119.75 and from_unit == "f")
+            or (temperature < 0 and from_unit == "k")
+        ):
+            raise ValueError("Температура не может быть меньше абсолютного нуля 0 k")
+
         if from_unit == "f" and to_unit == "c":
             return (temperature - 32) * self.f_to_c
         elif from_unit == "f" and to_unit == "k":
@@ -50,5 +67,5 @@ class BaseConverter:
         elif from_unit == "k" and to_unit == "f":
             return (temperature - self.c_to_k) * self.f_to_c + 32
         else:
-            print("Неправильно указаны единицы измерения")
+
             return temperature
