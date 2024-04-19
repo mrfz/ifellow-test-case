@@ -24,3 +24,10 @@ def test_app_task2():
     result = runner.invoke(app, ["hello"])
     assert result.exit_code == 0
     assert result.output == 'Повтороющийся символ в слове "Hello": l\n'
+
+
+# TODO реализовать тесты для ввода параметров.
+# Пока не получается передать input для нескольких значений
+def test_app_task3():
+    """Test typer application with task 3"""
+    pass
