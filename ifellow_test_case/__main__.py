@@ -26,20 +26,6 @@ def version_callback(print_version: bool) -> None:
 
 
 @app.command()
-def main(
-    print_version: bool = typer.Option(
-        None,
-        "-v",
-        "--version",
-        callback=version_callback,
-        is_eager=True,
-        help="Prints the version of the ifellow-test-case package.",
-    ),
-) -> None:
-    """Тестовое задание для поступления на курс  iFellow QA Automation"""
-
-
-@app.command()
 def random_array_stats(
     verbose: bool = typer.Option(
         False, "--verbose", "-v", help="Выводит детальную информацию о массиве"
