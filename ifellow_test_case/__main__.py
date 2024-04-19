@@ -7,6 +7,7 @@ from ifellow_test_case import version
 from ifellow_test_case.task1_random_array import max_min_mean, random_array
 from ifellow_test_case.task2_hello import hello
 from ifellow_test_case.task3_temp_converter import BaseConverter
+from ifellow_test_case.task4_clock_hands_angle import hands_angle
 
 app = typer.Typer(
     name="ifellow-test-case",
@@ -116,6 +117,45 @@ def cli_convert_temperature(
     console.print(
         f"Конвертированная температура: {converter.convert(temperature, from_unit, to_unit)} {to_unit}"
     )
+
+
+def hour_callback(value: int) -> int:
+    if value < 0 or value > 23:
+        raise typer.BadParameter("Недопустимое значение часо, должно быть от 0 до 23")
+    return value
+
+
+def minute_callback(value: int) -> int:
+    if value < 0 or value > 59:
+        raise typer.BadParameter("Недопустимое значение минут должно быть от 0 до 59")
+    return value
+
+
+@app.command(name="clock-hands-angle")
+def cli_clock_hands_angle(
+    hour: Annotated[
+        int,
+        typer.Option(
+            "--hour",
+            "-h",
+            prompt="Укажите время в часах: ",
+            help="время в часах от 0 до 23",
+            callback=hour_callback,
+        ),
+    ],
+    minute: Annotated[
+        int,
+        typer.Option(
+            "--minute",
+            "-m",
+            prompt="Укажите время в минутах: ",
+            help="время в минутах от 0 до 59",
+            callback=minute_callback,
+        ),
+    ],
+) -> None:
+    """Вычисление угла поворота часовой стрелки"""
+    console.print(f"Угол от часовой до минутной стрелки: {hands_angle(hour, minute)}")
 
 
 if __name__ == "__main__":
