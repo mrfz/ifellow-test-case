@@ -41,7 +41,7 @@ rich = "^10.14.0"
 bandit = "^1.7.8"
 darglint = "^1.8.1"
 isort = {extras = ["colors"], version = "^5.13.2"}
-mypy = "^1.9.0"
+mypy = "^1.10.1"
 pre-commit = "^3.7.0"
 pydocstyle = "^6.3.0"
 pylint = "^3.1.0"
